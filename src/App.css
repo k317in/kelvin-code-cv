@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+:root {
+  --card-border: #1f2937;
+  --text: #e5e7eb;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+  color: var(--text);
 }
 
-.App-header {
-  background-color: #282c34;
+.app-root {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 1.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.code-page {
+  width: 100%;
+  max-width: 1000px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.code-card {
+  background: #020617;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  animation: cardIn 0.6s ease-out forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes cardIn {
   to {
-    transform: rotate(360deg);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.code-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: #020617;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.window-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.dot-red {
+  background: #f97373;
+}
+
+.dot-yellow {
+  background: #facc15;
+}
+
+.dot-green {
+  background: #22c55e;
+}
+
+.file-name {
+  font-family: "Fira Code", "JetBrains Mono", Menlo, Monaco, monospace;
+}
+
+.code-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0;
+  font-family: "Fira Code", "JetBrains Mono", Menlo, Monaco, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+/* blinking cursor */
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+.cursor--hidden {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .app-root {
+    padding: 0.75rem;
+  }
+
+  .code-card-body {
+    padding: 0.75rem 0.75rem 1rem;
+  }
+
+  pre {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  pre {
+    font-size: 0.72rem;
   }
 }
